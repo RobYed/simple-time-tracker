@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "Simple Time Tracker",
+  "short_name": "STT",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

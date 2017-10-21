@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePageName } from '../pages';
 
@@ -9,34 +10,33 @@ import { HomePageName } from '../pages';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  
+
   account: { email: string, password: string } = {
     email: 'test@example.com',
-    password: 'test'
+    password: 'test1234'
   };
 
   // Our translated text strings
   private loginErrorString: string = 'Login fehlgeschlagen';
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
+    public fireAuth: AngularFireAuth,
     public toastCtrl: ToastController) {
   }
 
   // Attempt to login in through our User service
-  doLogin() {
-    /*
-    this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(HomePageName);
-    }, (err) => {
-      this.navCtrl.push(HomePageName);
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
+  login() {
+    this.fireAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password)
+      .then(() => this.navCtrl.setRoot(HomePageName))
+      .catch((error) => {
+        // Unable to log in
+        let toast = this.toastCtrl.create({
+          message: this.loginErrorString,
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
       });
-      toast.present();
-    });
-    */
   }
 }
