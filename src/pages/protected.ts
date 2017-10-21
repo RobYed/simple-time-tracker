@@ -6,7 +6,6 @@ export class ProtectedPage {
   constructor(protected fireAuth: AngularFireAuth) {}
 
   ionViewCanEnter(): boolean {
-    debugger;
     return this.fireAuth.auth.currentUser !== null;
 
     /* TODO: get sure check works also at app load
