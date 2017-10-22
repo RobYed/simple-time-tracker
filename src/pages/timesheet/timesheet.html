@@ -6,8 +6,8 @@
     <ion-title>Stundenzettel</ion-title>
     <!-- <account-actions></account-actions> -->
     <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="log-out"></ion-icon>
+      <button ion-button icon-right>
+        <ion-icon name="contact"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -16,6 +16,14 @@
 
 <ion-content padding>
   <h1>{{ year }}</h1>
+  
+  <button ion-button icon-only icon-left>
+    <ion-icon name="ios-arrow-back"></ion-icon>
+  </button>
   <h2>{{ month }}</h2>
+  <button ion-button icon-only icon-right>
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </button>
+  
   <p>{{ userId }}</p>
 </ion-content>
