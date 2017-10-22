@@ -1,3 +1,4 @@
 export const LoginPageName = 'LoginPage';
-export const HomePageName = 'HomePage';
-export const ListPageName = 'ListPage';
+export const TimesheetPageName = 'TimesheetPage';
+export const SettingsPageName = 'SettingsPage';
+export const ProfilePageName = 'ProfilePage';
