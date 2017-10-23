@@ -1,0 +1,69 @@
+$lightgrey: #bdbdbd;
+$purple-1: #8e24aa;
+$purple-2: #7b1fa2;
+$purple-3: #6a1b9a;
+
+.timesheet-timepicker {
+  display: block;
+  // margin: 15px;
+  height: 64px;
+  border: 2px solid $lightgrey;
+  
+  .day {
+    display: inline-block;
+    float: left;
+    width: 20%;
+    text-align: center;
+    font-size: 32px;
+    line-height: 60px;
+    color: grey;
+  }
+  
+  .working-hours {
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 60%;
+    text-align: center;
+    color: grey;
+    
+    button {
+      height: calc(100% - 20px);
+      margin: 10px;
+      background-color: $purple-1;
+      border: 3px solid $purple-3;
+      border-radius: 4px;
+      color: white;
+      
+      &:hover {
+        background-color: $purple-2;
+      }
+      &:active {
+        background-color: $purple-3;
+      }
+    }
+  }
+  
+  .action-bar {
+    display: inline-block;
+    float: left;
+    width: 20%;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    color: grey;
+    
+    button {
+      height: calc(100% - 20px);
+      margin: 10px;
+      background-color: transparent;
+      border: none;
+      border-radius: 4px;
+      color: grey;
+      
+      &:hover {
+        color: darkgrey;
+      }
+    }
+  }
+}

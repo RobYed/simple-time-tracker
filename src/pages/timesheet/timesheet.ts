@@ -1,3 +1,4 @@
+import { TimesheetService } from './timesheet.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -19,18 +20,22 @@ export class TimesheetPage extends ProtectedPage {
 
   year: string;
   month: string;
-  weeks: TimesheetWeek[];
+  timesheet: TimesheetWeek[];
 
   constructor(
     protected fireAuth: AngularFireAuth,
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    private timesheetService: TimesheetService
   ) {
     super(fireAuth);
 
     this.userId = this.navParams.get('userId');
     this.year = this.navParams.get('year');
     this.month = this.navParams.get('month');
+
+    this.timesheet = this.timesheetService.getTimesheetForMonth(this.year, this.month, this.plannedHours);
+    console.log('timesheet', this.timesheet);
   }
 
 

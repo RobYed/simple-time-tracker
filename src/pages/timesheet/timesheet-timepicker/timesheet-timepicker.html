@@ -1,0 +1,18 @@
+<div class="timesheet-timepicker">
+    <div class="day">{{ day.day | date:'EE' }}</div>
+    <div class="working-hours">
+      <button class="day-picker">
+        START {{ day.from | date:'shortTime' }}
+      </button>
+      BIS
+      <button class="day-picker">
+        ENDE {{ day.to | date:'shortTime' }}
+      </button>
+    </div>
+    <div class="action-bar">
+      <button>
+        <i class="material-icons">wb_sunny</i>
+      </button>
+    <div>
+</div>
+

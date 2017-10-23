@@ -7,11 +7,12 @@ export enum TimesheetDayType {
 
 export class TimesheetDay {
 
+  public from: Date;
+  public to: Date;
+
   constructor(
     public day: Date,
-    public from: Date,
-    public to: Date,
-    public type: TimesheetDayType
+    public type: TimesheetDayType = TimesheetDayType.Workday
   ) {}
 
   getWeekdayShortName(): string {

@@ -1,32 +1,30 @@
 import { TimesheetDay } from './timesheet-day';
+import * as getISOWeek from 'date-fns/get_iso_week';
+import * as isAfter from 'date-fns/is_after';
+import * as addDays from 'date-fns/add_days';
 
 export class TimesheetWeek {
 
-  days: TimesheetDay[];
+  days: TimesheetDay[] = [];
   weekNumber: number;
-  actualHours: number;
+  actualHours: number = 0;
 
   constructor(
     public plannedHours: number,
     private from: Date,
-    private to: Date = null,
+    private to: Date
   ) {
-
+    this.weekNumber = getISOWeek(from);
+    
+    let currentDate = from;
+    
+    while (!isAfter(currentDate, to)) {
+      this.days.push(new TimesheetDay(currentDate));
+      currentDate = addDays(currentDate, 1);
+    }
   }
 
   getWeekNumberName(): string {
     return 'KW' + this.weekNumber.toString();
   }
-}
-
-function getDateOfISOWeek(w, y) {
-  const simple = new Date(y, 0, 1 + (w - 1) * 7);
-  const dow = simple.getDay();
-  const ISOweekStart = simple;
-  if (dow <= 4) {
-    ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
-  } else {
-    ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
-  }
-  return ISOweekStart;
 }
