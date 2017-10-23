@@ -1,10 +1,11 @@
-import { TimesheetService } from './timesheet.service';
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, App } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { ProtectedPage } from './../protected';
 import { TimesheetWeek } from './../../models/timesheet-week';
+import { TimesheetService } from './timesheet.service';
+import { TimesheetPageName } from './../pages';
 
 @IonicPage({
   segment: 'timesheet/:userId/:year/:month'
@@ -38,6 +39,36 @@ export class TimesheetPage extends ProtectedPage {
     console.log('timesheet', this.timesheet);
   }
 
+  nextMonth() {
+    this.navCtrl.setRoot(TimesheetPageName, {
+      userId: this.userId,
+      year: TimesheetPage.getNextYear(this.year, this.month),
+      month: TimesheetPage.getNextMonth(this.month)
+    });
+  }
 
+  previousMonth() {
+    this.navCtrl.setRoot(TimesheetPageName, {
+      userId: this.userId,
+      year: TimesheetPage.getPreviousYear(this.year, this.month),
+      month: TimesheetPage.getPreviousMonth(this.month)
+    });
+  }
+
+  private static getNextYear(year: string, month: string): string {
+    return (parseInt(month) + 1 === 13 ? parseInt(year) + 1 : year).toString();
+  }
+
+  private static getNextMonth(month: string): string {
+    return (parseInt(month) + 1 === 13 ? '1' : parseInt(month) + 1).toString();
+  }
+
+  private static getPreviousYear(year: string, month: string): string {
+    return (parseInt(month) - 1 === 0 ? parseInt(year) - 1 : year).toString();
+  }
+
+  private static getPreviousMonth(month: string): string {
+    return (parseInt(month) - 1 === 0 ? '12' : parseInt(month) - 1).toString();
+  }
 
 }

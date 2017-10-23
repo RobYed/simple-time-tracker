@@ -17,11 +17,11 @@
 <ion-content padding>
   <h1>{{ year }}</h1>
   
-  <button ion-button icon-only icon-left>
+  <button ion-button icon-only icon-left (click)="previousMonth()">
     <ion-icon name="ios-arrow-back"></ion-icon>
   </button>
   <h2>{{ month }}</h2>
-  <button ion-button icon-only icon-right>
+  <button ion-button icon-only icon-right (click)="nextMonth()">
     <ion-icon name="ios-arrow-forward"></ion-icon>
   </button>
 
