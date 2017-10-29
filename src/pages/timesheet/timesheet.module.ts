@@ -5,11 +5,13 @@ import { TimesheetPage } from './timesheet';
 import { TimesheetService } from './timesheet.service';
 import { TimesheetTimepicker } from './timesheet-timepicker/timesheet-timepicker';
 import { ComponentsModule } from '../../components/components.module';
+import { MonthPipe } from './month.pipe';
 
 @NgModule({
   declarations: [
     TimesheetPage,
-    TimesheetTimepicker
+    TimesheetTimepicker,
+    MonthPipe
   ],
   imports: [
     ComponentsModule,

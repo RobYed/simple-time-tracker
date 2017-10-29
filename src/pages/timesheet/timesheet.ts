@@ -27,7 +27,8 @@ export class TimesheetPage extends ProtectedPage {
     protected fireAuth: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private timesheetService: TimesheetService
+    private timesheetService: TimesheetService,
+    private appRoot: App
   ) {
     super(fireAuth);
 
@@ -39,20 +40,26 @@ export class TimesheetPage extends ProtectedPage {
     console.log('timesheet', this.timesheet);
   }
 
+  selectYear() {
+    console.log('selected year:', this.year);
+  }
+
+  selectMonth() {
+    console.log('selected month:', this.month);
+  }
+
   nextMonth() {
-    this.navCtrl.setRoot(TimesheetPageName, {
-      userId: this.userId,
-      year: TimesheetPage.getNextYear(this.year, this.month),
-      month: TimesheetPage.getNextMonth(this.month)
-    });
+    this.openTimesheet(
+      TimesheetPage.getNextYear(this.year, this.month),
+      TimesheetPage.getNextMonth(this.month)
+    );
   }
 
   previousMonth() {
-    this.navCtrl.setRoot(TimesheetPageName, {
-      userId: this.userId,
-      year: TimesheetPage.getPreviousYear(this.year, this.month),
-      month: TimesheetPage.getPreviousMonth(this.month)
-    });
+    this.openTimesheet(
+      TimesheetPage.getPreviousYear(this.year, this.month),
+      TimesheetPage.getPreviousMonth(this.month)
+    );
   }
 
   private static getNextYear(year: string, month: string): string {
@@ -69,6 +76,14 @@ export class TimesheetPage extends ProtectedPage {
 
   private static getPreviousMonth(month: string): string {
     return (parseInt(month) - 1 === 0 ? '12' : parseInt(month) - 1).toString();
+  }
+
+  private openTimesheet(year: string, month: string) {
+    this.navCtrl.setRoot(TimesheetPageName, {
+      userId: this.userId,
+      year: year,
+      month: month
+    });
   }
 
 }

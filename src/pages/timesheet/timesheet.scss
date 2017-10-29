@@ -1,3 +1,12 @@
 page-timesheet {
 
+  .month-selector {
+    width: calc(100% - 90px);
+  }
+
+  .timesheet-week {
+    h2, h2:first-child {
+      margin-top: 1.8rem;
+    }
+  }
 }

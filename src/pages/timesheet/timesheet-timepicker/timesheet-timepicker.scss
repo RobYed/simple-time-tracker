@@ -3,18 +3,22 @@ $purple-1: #8e24aa;
 $purple-2: #7b1fa2;
 $purple-3: #6a1b9a;
 
-.timesheet-timepicker {
+timesheet-timepicker {
   display: block;
   // margin: 15px;
   height: 64px;
   border: 2px solid $lightgrey;
+
+  &:not(:last-child) {
+    border-bottom: none;
+  }
   
   .day {
     display: inline-block;
     float: left;
     width: 20%;
     text-align: center;
-    font-size: 32px;
+    font-size: 24px;
     line-height: 60px;
     color: grey;
   }
