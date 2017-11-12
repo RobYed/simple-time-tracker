@@ -1,25 +1,29 @@
-export enum TimesheetDayType {
-  Workday = 'Arbeitstag',
-  Holiday = 'Urlaub',
-  SickDay = 'Krankheitstag',
-  Overtime = 'Überstundenfrei'
+export enum DAY_TYPE {
+  WORKDAY = 'WORKDAY', // 'Arbeitstag',
+  WEEKEND = 'WEEKEND', // 'Wochenende',
+  HOLIDAY = 'HOLIDAY', // 'Urlaub',
+  SICKDAY = 'SICKDAY', // 'Krankheitstag',
+  OVERTIME = 'OVERTIME' // 'Überstundenfrei'
 }
 
-export class TimesheetDay {
+export interface TimesheetDayObject {
+  day: string,
+  from: Date,
+  to: Date,
+  type: DAY_TYPE
+}
 
-  public from: Date;
-  public to: Date;
+export class TimesheetDay implements TimesheetDayObject {
+
+  public from: Date = null;
+  public to: Date = null;
 
   constructor(
-    public day: Date,
-    public type: TimesheetDayType = TimesheetDayType.Workday
+    public day: string,
+    public type: DAY_TYPE = DAY_TYPE.WORKDAY
   ) {}
 
-  getWeekdayShortName(): string {
-    return 'MO';
-  }
-
-  getWeekdayNumber(): number {
-    return 23;
+  toObject(): Object {
+    return JSON.parse(JSON.stringify(this));
   }
 }

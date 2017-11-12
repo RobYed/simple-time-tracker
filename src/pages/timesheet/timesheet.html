@@ -32,8 +32,9 @@
     <ion-icon name="ios-arrow-forward"></ion-icon>
   </button>
 
-  <div class="timesheet-week" *ngFor="let week of timesheet">
+  <div class="timesheet-week" *ngFor="let week of (timesheet | async)">
     <h2>KW {{ week.weekNumber }}</h2>
     <timesheet-timepicker [day]="day" *ngFor="let day of week.days"></timesheet-timepicker>
   </div>
+
 </ion-content>

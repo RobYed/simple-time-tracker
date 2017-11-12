@@ -6,6 +6,7 @@ import { ProtectedPage } from './../protected';
 import { TimesheetWeek } from './../../models/timesheet-week';
 import { TimesheetService } from './timesheet.service';
 import { TimesheetPageName } from './../pages';
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage({
   segment: 'timesheet/:userId/:year/:month'
@@ -21,7 +22,7 @@ export class TimesheetPage extends ProtectedPage {
 
   year: string;
   month: string;
-  timesheet: TimesheetWeek[];
+  timesheet: Observable<TimesheetWeek[]>;
 
   constructor(
     protected fireAuth: AngularFireAuth,
@@ -36,8 +37,8 @@ export class TimesheetPage extends ProtectedPage {
     this.year = this.navParams.get('year');
     this.month = this.navParams.get('month');
 
-    this.timesheet = this.timesheetService.getTimesheetForMonth(this.year, this.month, this.plannedHours);
-    console.log('timesheet', this.timesheet);
+    this.timesheet = this.timesheetService.getTimesheetForMonth(this.userId, this.year, this.month);
+    this.timesheet.subscribe(timesheet => console.log('timesheet', timesheet));
   }
 
   selectYear() {
@@ -67,7 +68,9 @@ export class TimesheetPage extends ProtectedPage {
   }
 
   private static getNextMonth(month: string): string {
-    return (parseInt(month) + 1 === 13 ? '1' : parseInt(month) + 1).toString();
+    return TimesheetPage.padStart(
+      (parseInt(month) + 1 === 13 ? '1' : parseInt(month) + 1).toString(), 2, '0'
+    );
   }
 
   private static getPreviousYear(year: string, month: string): string {
@@ -75,7 +78,13 @@ export class TimesheetPage extends ProtectedPage {
   }
 
   private static getPreviousMonth(month: string): string {
-    return (parseInt(month) - 1 === 0 ? '12' : parseInt(month) - 1).toString();
+    return TimesheetPage.padStart(
+      (parseInt(month) - 1 === 0 ? '12' : parseInt(month) - 1).toString(), 2, '0'
+    );
+  }
+
+  private static padStart(string: string, targetLength: number, character: string): string {
+    return String(character.repeat(targetLength) + string).slice(-targetLength);
   }
 
   private openTimesheet(year: string, month: string) {

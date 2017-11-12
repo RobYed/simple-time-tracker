@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { HomePageName } from '../pages';
+import { TimesheetPageName } from './../pages';
 
 @IonicPage()
 @Component({
@@ -28,7 +28,7 @@ export class LoginPage {
   // Attempt to login in through our User service
   login() {
     this.fireAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password)
-      .then(() => this.navCtrl.setRoot(HomePageName))
+      .then((user) => this.openCurrentTimesheet(user.uid))
       .catch((error) => {
         // Unable to log in
         let toast = this.toastCtrl.create({
@@ -38,5 +38,13 @@ export class LoginPage {
         });
         toast.present();
       });
+  }
+
+  private openCurrentTimesheet(userId) {
+    this.navCtrl.setRoot(TimesheetPageName, {
+      userId: userId,
+      year: '2017',
+      month: '06'
+    });
   }
 }
