@@ -31,7 +31,7 @@ timesheet-timepicker {
     text-align: center;
     color: grey;
     
-    button {
+    button.day-picker {
       height: calc(100% - 20px);
       margin: 10px;
       background-color: $purple-1;

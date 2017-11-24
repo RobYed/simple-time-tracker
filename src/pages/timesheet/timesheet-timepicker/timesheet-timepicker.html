@@ -1,10 +1,10 @@
 <div class="day">{{ day.day | date:'EE' }}</div>
 <div class="working-hours">
-  <button class="day-picker">
+  <button class="day-picker" (click)="pickFrom()">
     START {{ day.from | date:'shortTime' }}
   </button>
   BIS
-  <button class="day-picker">
+  <button class="day-picker" (click)="pickTo()">
     ENDE {{ day.to | date:'shortTime' }}
   </button>
 </div>
