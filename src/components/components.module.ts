@@ -8,7 +8,7 @@ import { AccountActionsComponent } from './account-actions/account-actions';
     AccountActionsComponent,
   ],
   imports: [
-    IonicModule.forRoot(ComponentsModule)
+    IonicModule //.forRoot(ComponentsModule)
   ],
   exports: [
     AccountActionsComponent
