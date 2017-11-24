@@ -1,12 +1,28 @@
 <div class="day">{{ day.day | date:'EE' }}</div>
 <div class="working-hours">
-  <button class="day-picker" (click)="pickFrom()">
-    START {{ day.from | date:'shortTime' }}
-  </button>
+  <div class="day-picker">
+    <ion-datetime 
+    displayFormat="HH:mm" 
+    pickerFormat="HH:mm"
+    [max]="toTime"
+    [(ngModel)]="fromTime"
+    placeholder="START"
+    cancelText="Abbrechen"
+    doneText="Fertig">
+    </ion-datetime>
+  </div>
   BIS
-  <button class="day-picker" (click)="pickTo()">
-    ENDE {{ day.to | date:'shortTime' }}
-  </button>
+  <div class="day-picker">
+    <ion-datetime 
+      displayFormat="HH:mm" 
+      pickerFormat="HH:mm" 
+      [min]="fromTime"
+      [(ngModel)]="toTime"
+      placeholder="ENDE"
+      cancelText="Abbrechen"
+      doneText="Fertig">
+    </ion-datetime>
+  </div>
 </div>
 <div class="action-bar">
   <button clear color="dark" icon-only ion-button>

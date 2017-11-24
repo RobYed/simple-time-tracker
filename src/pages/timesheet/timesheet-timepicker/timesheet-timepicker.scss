@@ -31,9 +31,11 @@ timesheet-timepicker {
     text-align: center;
     color: grey;
     
-    button.day-picker {
-      height: calc(100% - 20px);
-      margin: 10px;
+    .day-picker {
+      display: inline-block;
+      height: calc(100% - 10px);
+      width: 30%;
+      margin: 5px;
       background-color: $purple-1;
       border: 3px solid $purple-3;
       border-radius: 4px;
@@ -45,6 +47,18 @@ timesheet-timepicker {
       &:active {
         background-color: $purple-3;
       }
+    }
+
+    ion-datetime {
+      button {
+        position: relative !important;
+      }
+    
+      .datetime-text {
+        overflow: visible;
+      }
+    
+      flex: 1;
     }
   }
   

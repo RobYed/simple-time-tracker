@@ -19,8 +19,8 @@ export class TimesheetTimepicker implements OnInit {
   constructor(private pickerCtrl: PickerController) {}
 
   ngOnInit() {
-    this.fromTime = this.day.from && this.day.from.toLocaleTimeString().substring(0, 5);
-    this.toTime = this.day.to && this.day.to.toLocaleTimeString().substring(0, 5);
+    // this.fromTime = this.day.from && this.day.from.toLocaleTimeString().substring(0, 5);
+    // this.toTime = this.day.to && this.day.to.toLocaleTimeString().substring(0, 5);
   }
 
   pickFrom(event) {
@@ -34,8 +34,8 @@ export class TimesheetTimepicker implements OnInit {
   }
 
   private createPicker() {
-    const picker = this.pickerCtrl.create();
-    picker.present();
+    // const picker = this.pickerCtrl.create();
+    // picker.present();
   }
 
 
