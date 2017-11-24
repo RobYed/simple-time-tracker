@@ -14,7 +14,7 @@ import { MonthPipe } from './month.pipe';
     MonthPipe
   ],
   imports: [
-    ComponentsModule,
+    // ComponentsModule,
     IonicPageModule.forChild(TimesheetPage)
   ],
   exports: [
